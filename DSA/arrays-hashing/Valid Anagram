@@ -1,0 +1,32 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        HashMap<Character, Integer> map = new HashMap<>();
+ 
+        if(s.length()!= t.length())
+        {
+            return false;
+        }
+ 
+        for(int i=0; i<s.length(); i++)
+        {
+            char S = s.charAt(i);
+            char T = t.charAt(i);
+ 
+            map.put(S, map.getOrDefault(S, 0) + 1);
+            map.put(T, map.getOrDefault(T,0) -1);
+        }
+ 
+        for(int count : map.values())
+        {
+            if(count!=0)
+            return false;
+        }
+        return true;
+    }
+}
+ 
+Time Complexity - O(n) because we are traversing to the length of the String
+Space Complexity - O(k) space to store string elements in the map
+ 
+This approach works because we are storing the characters along with the count in the hashMap
+for one string we are increasing the count if that element exists and for other we are decreasing the count if that character exists so in the end the count will be 0, if the count for any character is not 0 then it means there's a mismatch.
